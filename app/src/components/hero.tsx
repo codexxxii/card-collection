@@ -46,10 +46,6 @@ export default function Hero() {
       {/* Title */}
       <motion.h1
         variants={item as any}
-        whileHover={{
-          x: 3,
-          transition: { duration: 0.25 },
-        }}
         className="fraunces text-7xl font-semibold tracking-tight"
       >
         Cardvault
