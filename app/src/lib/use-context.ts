@@ -10,6 +10,9 @@ export type Card = {
 type Props = {
   cards: Card[];
   handleCards: (cards: Card[]) => void;
+  filteredCards: () => Card[];
+  input: string;
+  handleInput: (input: string) => void;
   isActive: boolean;
   handleIsActive: (isActive: boolean) => void;
   activeCard: null | Card;
@@ -17,9 +20,18 @@ type Props = {
   resetActiveCard: () => void;
 };
 
-export const useContext = create<Props>((set) => ({
+export const useContext = create<Props>((set, get) => ({
   cards: [],
   handleCards: (cards) => set({ cards }),
+  filteredCards: () => {
+    const { cards, input } = get();
+
+    return cards.filter((card) =>
+      card.name.toLowerCase().includes(input.toLowerCase()),
+    );
+  },
+  input: "",
+  handleInput: (input) => set({ input }),
   isActive: false,
   handleIsActive: (isActive) => set({ isActive }),
   activeCard: null,

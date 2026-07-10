@@ -8,6 +8,8 @@ export default function MaxWidthWrapper({
   className?: string;
 }) {
   return (
-    <div className={cn("w-full max-w-7xl mx-auto", className)}>{children}</div>
+    <div className={cn("w-full max-w-7xl mx-auto px-5 2xl:px-0", className)}>
+      {children}
+    </div>
   );
 }

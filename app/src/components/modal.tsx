@@ -1,10 +1,13 @@
 import { useContext } from "@/lib/use-context";
 import { motion, AnimatePresence } from "framer-motion";
-import { XIcon } from "lucide-react";
+import { RotateCcw, XIcon } from "lucide-react";
+import { useState } from "react";
 
 export default function Modal() {
   const { isActive, handleIsActive, activeCard, resetActiveCard } =
     useContext();
+
+  const [flipped, setFlipped] = useState(false);
 
   const onClick = () => {
     handleIsActive(false);
@@ -18,7 +21,7 @@ export default function Modal() {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.2 }}
-          className="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm p-5 grid place-items-center"
+          className="fixed inset-0 z-50 grid place-items-center bg-black/40 p-3 backdrop-blur-sm sm:p-5"
           onClick={onClick}
         >
           <motion.div
@@ -42,26 +45,131 @@ export default function Modal() {
               ease: [0.22, 1, 0.36, 1],
             }}
             onClick={(e) => e.stopPropagation()}
-            className="mx-auto flex h-4/5 w-4/5 rounded-2xl bg-white shadow-2xl"
+            className="
+          flex
+          h-[90%]
+          w-[95%]
+          max-w-6xl
+          flex-col
+          overflow-hidden
+          rounded-2xl
+          bg-white
+          shadow-2xl
+          sm:h-4/5
+          sm:w-4/5
+          md:flex-row
+        "
           >
-            <div className="w-full p-5 relative flex gap-5">
+            <div
+              className="
+            relative
+            flex
+            w-full
+            flex-col
+            gap-5
+            p-5
+            md:flex-row
+          "
+            >
               <button
-                className="absolute top-5 right-5 rounded-full bg-gray-100 grid place-items-center w-10 h-10 cursor-pointer"
+                className="
+              absolute
+              right-5
+              top-5
+              z-10
+              grid
+              h-10
+              w-10
+              place-items-center
+              rounded-full
+              bg-gray-100
+              cursor-pointer
+            "
                 onClick={onClick}
               >
                 <XIcon size={20} />
               </button>
-              <div className="w-1/2 h-full">
-                <p className="text-5xl fraunces font-semibold">
+
+              {/* Title */}
+              <div
+                className="
+              flex
+              w-full
+              items-start
+              pt-10
+              md:w-1/2
+              md:pt-0
+            "
+              >
+                <p className="fraunces text-4xl font-semibold sm:text-5xl">
                   {activeCard?.name}
                 </p>
               </div>
-              <div className="w-1/2 h-full grid place-items-center">
-                <img
-                  src={activeCard?.image_front}
-                  alt=""
-                  className="h-167.5 object-contain"
-                />
+
+              {/* Card */}
+              <div
+                className="
+              flex
+              w-full
+              items-center
+              justify-center
+              md:w-1/2
+            "
+              >
+                <div
+                  style={{ perspective: "1500px" }}
+                  className="
+                relative
+                h-105
+                w-62.5
+                cursor-pointer
+                sm:h-140
+                sm:w-82.5
+                lg:h-167.5
+                lg:w-98.75
+              "
+                  onClick={() => setFlipped(!flipped)}
+                >
+                  <motion.div
+                    animate={{
+                      rotateY: flipped ? -180 : 0,
+                    }}
+                    transition={{
+                      duration: 0.95,
+                      ease: [0.22, 1, 0.36, 1],
+                    }}
+                    style={{
+                      transformStyle: "preserve-3d",
+                    }}
+                    className="relative h-full"
+                  >
+                    {/* Front */}
+                    <img
+                      src={activeCard?.image_front}
+                      className="absolute inset-0 h-full object-contain"
+                      style={{
+                        backfaceVisibility: "hidden",
+                        WebkitBackfaceVisibility: "hidden",
+                      }}
+                    />
+
+                    {/* Back */}
+                    <img
+                      src={activeCard?.image_back}
+                      className="absolute inset-0 h-full object-contain"
+                      style={{
+                        transform: "rotateY(180deg)",
+                        backfaceVisibility: "hidden",
+                        WebkitBackfaceVisibility: "hidden",
+                      }}
+                    />
+                  </motion.div>
+
+                  <div className="absolute bottom-5 left-1/2 flex -translate-x-1/2 items-center gap-2 rounded-full border border-white bg-white/40 px-2.5 py-0.5 text-white">
+                    <RotateCcw size={10} />
+                    <p className="text-xs">Flip</p>
+                  </div>
+                </div>
               </div>
             </div>
           </motion.div>

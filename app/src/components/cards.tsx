@@ -8,6 +8,7 @@ import Modal from "./modal";
 export default function Cards() {
   const { handleCards, isActive, handleIsActive, handleActiveCard } =
     useContext();
+  const filteredCards = useContext.getState().filteredCards();
 
   const { data, isLoading, error } = useQuery({
     queryKey: ["cards"],
@@ -65,22 +66,43 @@ export default function Cards() {
           variants={container}
           initial="hidden"
           animate="visible"
-          className="w-full grid grid-cols-4 2xl:grid-cols-5 place-items-start"
+          className="
+    grid
+    w-full
+    grid-cols-1
+    place-items-start
+    gap-y-8
+    sm:grid-cols-2
+    md:grid-cols-3
+    lg:grid-cols-4
+    2xl:grid-cols-5
+  "
         >
-          {data.cards.map((card) => (
+          {filteredCards.map((card) => (
             <motion.div
               variants={cardVariants as any}
               key={card.id}
-              className="w-full h-100"
+              className="
+        flex
+        h-80
+        w-full
+        items-center
+        justify-center
+        sm:h-90
+        lg:h-100
+      "
             >
-              <div className="w-full h-full grid place-items-center">
-                <img
-                  onClick={() => onClick(card)}
-                  src={card.image_front}
-                  alt=""
-                  className="h-100 object-contain cursor-pointer"
-                />
-              </div>
+              <img
+                onClick={() => onClick(card)}
+                src={card.image_front}
+                alt=""
+                className="
+          h-full
+          max-w-full
+          cursor-pointer
+          object-contain
+        "
+              />
             </motion.div>
           ))}
         </motion.div>

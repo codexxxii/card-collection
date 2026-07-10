@@ -7,10 +7,13 @@ export default function Hero() {
       variants={container}
       initial="hidden"
       animate="visible"
-      className="space-y-3"
+      className="space-y-2 md:space-y-3"
     >
       {/* Eyebrow */}
-      <motion.div variants={item as any} className="flex items-center gap-3">
+      <motion.div
+        variants={item as any}
+        className="flex items-center gap-2 md:gap-3"
+      >
         <motion.div
           initial={{ scale: 0 }}
           animate={{
@@ -37,7 +40,7 @@ export default function Hero() {
 
         <motion.p
           variants={item as any}
-          className="text-xs uppercase tracking-[0.35em] text-neutral-500"
+          className="text-[10px] uppercase tracking-[0.25em] text-neutral-500 sm:text-xs sm:tracking-[0.35em]"
         >
           Personal Collection
         </motion.p>
@@ -46,7 +49,7 @@ export default function Hero() {
       {/* Title */}
       <motion.h1
         variants={item as any}
-        className="fraunces text-7xl font-semibold tracking-tight"
+        className="fraunces text-4xl font-semibold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl"
       >
         Cardvault
       </motion.h1>
@@ -54,7 +57,7 @@ export default function Hero() {
       {/* Description */}
       <motion.p
         variants={item as any}
-        className="max-w-xl text-lg leading-relaxed text-neutral-500"
+        className="max-w-md text-base leading-relaxed text-neutral-500 sm:max-w-lg sm:text-lg md:max-w-xl"
       >
         A curated collection of trading cards gathered over time.
       </motion.p>
