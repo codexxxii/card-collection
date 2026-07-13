@@ -94,6 +94,8 @@ export default function Modal() {
               <div
                 className="
               flex
+              flex-col
+              justify-between
               w-full
               items-start
               pt-10
@@ -101,9 +103,18 @@ export default function Modal() {
               md:pt-0
             "
               >
-                <p className="fraunces text-4xl font-semibold sm:text-5xl">
+                <a
+                  href={activeCard?.price_charting_link}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="fraunces text-4xl font-semibold sm:text-5xl"
+                >
                   {activeCard?.name}
-                </p>
+                </a>
+                <div className="text-lg fraunces">
+                  <p>Illustrator: {activeCard?.illustrator}</p>
+                  <p>Set: {activeCard?.set}</p>
+                </div>
               </div>
 
               {/* Card */}

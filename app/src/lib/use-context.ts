@@ -5,6 +5,9 @@ export type Card = {
   image_front: string;
   image_back: string;
   name: string;
+  illustrator: string;
+  set: string;
+  price_charting_link: string;
 };
 
 type Props = {

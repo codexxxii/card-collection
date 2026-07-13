@@ -1,0 +1,82 @@
+{
+  "id": "7367d919-aedc-46e0-9670-e7a2a8548bf1",
+  "prevId": "00000000-0000-0000-0000-000000000000",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "public.cards": {
+      "name": "cards",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "image_front": {
+          "name": "image_front",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "image_back": {
+          "name": "image_back",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "price_charting_link": {
+          "name": "price_charting_link",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "illustrator": {
+          "name": "illustrator",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "set": {
+          "name": "set",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    }
+  },
+  "enums": {},
+  "schemas": {},
+  "sequences": {},
+  "roles": {},
+  "policies": {},
+  "views": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}

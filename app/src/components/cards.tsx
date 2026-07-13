@@ -1,6 +1,6 @@
 import { getCards } from "@/lib/api";
 import { useQuery } from "@tanstack/react-query";
-import { Loader2Icon } from "lucide-react";
+import { CircleAlert, Loader2Icon } from "lucide-react";
 import { useContext, type Card } from "@/lib/use-context";
 import { motion } from "framer-motion";
 import Modal from "./modal";
@@ -28,7 +28,12 @@ export default function Cards() {
   }
 
   if (error) {
-    return <div>error</div>;
+    return (
+      <div className="w-full h-16 flex flex-col justify-center items-center space-y-1.5">
+        <CircleAlert className="text-red-500" size={50} />
+        <p className="text-sm">Something went wrong, try again</p>
+      </div>
+    );
   }
 
   const container = {
